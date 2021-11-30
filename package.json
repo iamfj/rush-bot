@@ -7,16 +7,26 @@
   "author": "Fabian Jocks <dev@jocks.io>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node src/rush.ts"
-  },
-  "devDependencies": {
-    "@types/node": "^16.11.11",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.2"
+    "dev": "ts-node src/rush.ts",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
     "socket.io": "^4.4.0",
     "tslog": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.11",
+    "@webpack-cli/generators": "^2.4.1",
+    "prettier": "^2.5.0",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }
