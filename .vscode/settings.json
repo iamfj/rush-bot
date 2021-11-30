@@ -11,6 +11,7 @@
   "prettier.useTabs": false,
   "prettier.embeddedLanguageFormatting": "auto",
   "prettier.printWidth": 180,
+  "javascript.validate.enable": false,
   "files.associations": {
     "*.env.dist": "dotenv"
   }
