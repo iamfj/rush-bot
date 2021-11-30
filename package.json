@@ -9,9 +9,7 @@
   "scripts": {
     "dev": "ts-node src/rush.ts",
     "build": "webpack --mode=production --node-env=production",
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "watch": "webpack --watch"
+    "build:dev": "webpack --mode=development"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
@@ -20,8 +18,6 @@
   },
   "devDependencies": {
     "@types/node": "^16.11.11",
-    "@webpack-cli/generators": "^2.4.1",
-    "prettier": "^2.5.0",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2",
