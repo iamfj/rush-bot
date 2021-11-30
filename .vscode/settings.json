@@ -10,5 +10,8 @@
   "prettier.trailingComma": "all",
   "prettier.useTabs": false,
   "prettier.embeddedLanguageFormatting": "auto",
-  "prettier.printWidth": 180
+  "prettier.printWidth": 180,
+  "files.associations": {
+    "*.env.dist": "dotenv"
+  }
 }

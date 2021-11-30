@@ -1,6 +1,9 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,yarn
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,node,yarn
+# Created by https://www.toptal.com/developers/gitignore/api/node,yarn,visualstudiocode,dotenv
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,yarn,visualstudiocode,dotenv
+
+### dotenv ###
+.env
 
 ### Node ###
 # Logs
@@ -75,7 +78,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 .env.test
 .env.production
 
@@ -167,4 +169,4 @@ dist
 # and uncomment the following lines
 # .pnp.*
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,yarn
+# End of https://www.toptal.com/developers/gitignore/api/node,yarn,visualstudiocode,dotenv
