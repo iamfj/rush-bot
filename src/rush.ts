@@ -1,7 +1,7 @@
 import { Server } from 'socket.io';
 import { ServerHandler } from './handler/serverHandler';
 import { Logger } from 'tslog';
-import { StrategyLoader } from './strategyLoader';
+import { StrategyResolver } from './resolver/strategyResolver';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -12,7 +12,5 @@ const rushPort: number = parseInt(process.env.RUSH_PORT ?? '3000');
 // Define components
 const logger: Logger = new Logger();
 
-const strategyLoader = new StrategyLoader(logger);
-strategyLoader.load();
-
+const strategyResolver = new StrategyResolver(logger);
 const serverHandler = new ServerHandler(new Server(rushPort, {}), logger);
