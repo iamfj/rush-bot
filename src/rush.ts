@@ -1,10 +1,9 @@
+import 'reflect-metadata';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { Logger } from 'tslog';
+import { container } from 'tsyringe';
 import { StrategyManager } from './manager/strategyManager';
-import { StrategyValidator } from './validator/strategyValidator';
-import { StrategyNormalizer } from './normalizer/strategyNormalizer';
-import { StrategyResolver } from './resolver/strategyResolver';
 
 dotenv.config();
 
@@ -12,12 +11,8 @@ dotenv.config();
 const rushPort: number = parseInt(process.env.RUSH_PORT ?? '3000');
 const strategyDir: string = path.join(process.cwd(), 'strategies');
 
-// Define components
 const logger: Logger = new Logger();
+container.register<Logger>(Logger, {useValue: logger});
 
-const strategyValidator = new StrategyValidator();
-const strategyNormalizer = new StrategyNormalizer();
-const strategyResolver = new StrategyResolver();
-const strategyManager = new StrategyManager(logger, strategyValidator, strategyNormalizer, strategyResolver);
-
+const strategyManager = container.resolve(StrategyManager);
 strategyManager.load(strategyDir);

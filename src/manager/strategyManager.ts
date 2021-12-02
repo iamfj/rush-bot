@@ -1,16 +1,18 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { Logger } from 'tslog';
+import { injectable, inject } from 'tsyringe';
 import { StrategyNormalizer } from '../normalizer/strategyNormalizer';
 import { StrategyResolver } from '../resolver/strategyResolver';
 import { StrategyValidator } from '../validator/strategyValidator';
 
+@injectable()
 export class StrategyManager {
   public constructor(
-    private readonly logger: Logger,
-    private readonly validator: StrategyValidator,
-    private readonly normalizer: StrategyNormalizer,
-    private readonly resolver: StrategyResolver,
+    @inject(Logger) private readonly logger: Logger,
+    @inject(StrategyValidator) private readonly validator: StrategyValidator,
+    @inject(StrategyNormalizer) private readonly normalizer: StrategyNormalizer,
+    @inject(StrategyResolver) private readonly resolver: StrategyResolver,
   ) {}
 
   public load(directory: string) {
