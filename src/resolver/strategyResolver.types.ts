@@ -35,7 +35,3 @@ export type Strategy = {
   onRequestData: OnRequestDataCallback,
   onTick: OnTickCallback
 };
-
-export interface IStrategy {
-  onInit(register: (name: string, label: string, options: OptionDefinition, onRequestData: OnRequestDataCallback, onTick: OnTickCallback) => void): void;
-}
