@@ -21,14 +21,14 @@ and the code owner before you start developing. Also, please note our
 [contributing guidelines](./contributing.md) before submitting your pull 
 request.
 
-The way of a bugfix is 
+**The way of a bugfix is** 
  1. create an issue
  2. submit the pull request
  3. bugfix will be published in the next release
 
 Feel free to discuss the bug in the forum beforehand.
 
-The way of an idea is
+**The way of an idea is**
  1. create a forum post
  2. wait for the reactions of other users and developers
  3. a ticket will be created
