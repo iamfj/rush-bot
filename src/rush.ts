@@ -12,5 +12,5 @@ const rushPort: number = parseInt(process.env.RUSH_PORT ?? '3000');
 // Define components
 const logger: Logger = new Logger();
 
-const strategyResolver = new StrategyResolver(logger);
+const strategyResolver = new StrategyResolver(logger, process.cwd());
 const serverHandler = new ServerHandler(new Server(rushPort, {}), logger);

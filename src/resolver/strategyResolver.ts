@@ -6,14 +6,14 @@ import { OnRequestDataCallback, OnTickCallback, OptionDefinition, Strategy } fro
 export class StrategyResolver {
   public strategies: Strategy[] = [];
 
-  public constructor(private readonly logger: Logger) {
+  public constructor(private readonly logger: Logger, private readonly cwd: string) {
     this.register = this.register.bind(this);
 
     // Loading strategies from directory
     for (const file of this.getFilesFromDirectory()) {
       const moduleName = path.basename(file);
       try {
-        const module = require(file);
+        const module = eval('require')(file);
 
         if (typeof module.onInit === 'undefined') {
           throw new Error(`Method onInit is not defined in module ${moduleName}`);
@@ -22,7 +22,7 @@ export class StrategyResolver {
         this.logger.debug(`Loaded strategy module ${moduleName}`);
         module.onInit(this.register);
       } catch (err) {
-        this.logger.error(err);
+        //this.logger.error(err);
         this.logger.error(`Could not load strategy module ${moduleName}`);
       }
     }
@@ -52,14 +52,13 @@ export class StrategyResolver {
   }
 
   private getFilesFromDirectory(): string[] {
-    const absoluteDirectory = path.join(process.cwd(), `strategies`);
     return fs
-      .readdirSync(absoluteDirectory)
+      .readdirSync(path.join(this.cwd, `strategies`))
       .filter((file) => {
         return file.endsWith(`.js`);
       })
       .map((file) => {
-        return path.join(process.cwd(), `strategies`, file);
+        return path.join(this.cwd, `strategies`, file);
       });
   }
 }
