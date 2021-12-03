@@ -14,11 +14,11 @@ const strategyDir: string = path.join(process.cwd(), 'strategies');
 // Configure logger instance
 const logger: Logger = new Logger({
   displayFilePath: 'hidden',
-  displayFunctionName: false
+  displayFunctionName: false,
 });
 
 // Register container objects
-container.register<Logger>(Logger, {useValue: logger});
+container.register<Logger>(Logger, { useValue: logger });
 
 // Define main components
 const strategyManager = container.resolve(StrategyManager);

@@ -1,4 +1,6 @@
-export class StrategyValidator {
+import { IValidator } from '../interface/validatorInterface';
+
+export class StrategyValidator implements IValidator {
   public validate(module: any): void {
     if (module.name === undefined) {
       throw new Error('Name is not defined');

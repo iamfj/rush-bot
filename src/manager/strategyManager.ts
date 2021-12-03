@@ -4,13 +4,15 @@ import { Logger } from 'tslog';
 import { injectable, inject } from 'tsyringe';
 import { StrategyNormalizer } from '../normalizer/strategyNormalizer';
 import { StrategyResolver } from '../resolver/strategyResolver';
+import { OptionValidator } from '../validator/optionValidator';
 import { StrategyValidator } from '../validator/strategyValidator';
 
 @injectable()
 export class StrategyManager {
   public constructor(
     @inject(Logger) private readonly logger: Logger,
-    @inject(StrategyValidator) private readonly validator: StrategyValidator,
+    @inject(StrategyValidator) private readonly strategyValidator: StrategyValidator,
+    @inject(OptionValidator) private readonly optionValidator: OptionValidator,
     @inject(StrategyNormalizer) private readonly normalizer: StrategyNormalizer,
     @inject(StrategyResolver) private readonly resolver: StrategyResolver,
   ) {}
@@ -20,8 +22,9 @@ export class StrategyManager {
       const filename = path.basename(file);
       try {
         const module = eval('require')(file);
-        this.validator.validate(module);
+        this.strategyValidator.validate(module);
         const normalizedModule = this.normalizer.normalize(module);
+        this.optionValidator.validate(normalizedModule.options);
         this.resolver.register(normalizedModule);
         this.logger.info(`Loaded strategy ${normalizedModule.label} from file ${filename}`);
       } catch (err) {

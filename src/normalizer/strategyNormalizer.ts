@@ -1,19 +1,12 @@
-export interface IStrategyModule {
-  name: string;
-  label: string;
-  options: { [key: string]: any };
-
-  beforeStart(): void;
-  onTick(): void;
-}
+import { IStrategy } from '../interface/strategyInterface';
 
 export class StrategyNormalizer {
-  public normalize(module: any): IStrategyModule {
+  public normalize(module: any): IStrategy {
     return {
       name: '',
       label: '',
       options: {},
-      beforeStart: () => {},
+      onStart: () => {},
       onTick: () => {},
       ...module,
     };

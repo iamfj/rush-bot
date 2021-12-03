@@ -10,20 +10,20 @@ module.exports.options = {
     default: 200,
   },
   smaSource: {
-    type: 'source',
+    type: 'candleSource',
     default: 'close',
   },
   emaPeriod: {
     type: 'number',
-    default: 9,
+    default: 26,
   },
   emaSource: {
-    type: 'source',
+    type: 'candleSource',
     default: 'close',
   },
 };
 
-module.exports.beforeStart = (options) => {
+module.exports.onStart = (options) => {
   // Will me executed before starting
 };
 
