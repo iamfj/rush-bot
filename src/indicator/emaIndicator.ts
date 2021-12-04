@@ -1,33 +1,35 @@
+import { round } from 'mathjs';
+import { inject, injectable } from 'tsyringe';
 import { IIndicator } from '../interface/indicatorInterface';
+import { EMAOptions } from '../types/indicatorTypes';
+import { SMAIndicator } from './smaIndicator';
 
+@injectable()
 export class EMAIndicator implements IIndicator {
   public name: string = 'ema';
   public label: string = 'Exponential Moving Average';
 
-  public execute(originalArray: number[], length: number): number[] {
-    let array = originalArray.slice().reverse();
-    let iPos = 0;
-    let ema;
+  public constructor(@inject(SMAIndicator) private readonly smaIndicator: SMAIndicator) {}
 
-    // trim initial NaN values
-    for (iPos = 0; iPos < array.length && isNaN(array[iPos]); iPos++) {}
-    array = array.slice(iPos); // trim initial NaN values from array
-    ema = [];
-    const k = 2 / (length + 1);
-    for (let i = 0; i < length - 1; i++) {
-      ema[i] = NaN;
+  public execute(data: number[], options: EMAOptions): number[] {
+    if (options.length < 1) {
+      throw new Error(`The EMA length should be greater than zero`);
     }
-    ema[length - 1] =
-      array.slice(0, length).reduce(function (a, b) {
-        return a + b;
-      }) / length;
-    for (let i = length; i < array.length; i++) {
-      ema[i] = array[i] * k + ema[i - 1] * (1 - k);
+
+    if (data.length < options.length) {
+      throw new Error(`Not enough data to calculate the EMA of length ${options.length}`);
     }
-    ema.reverse(); // reverse back for main consumption
-    for (let i = 0; i < iPos; i++) {
-      ema.push(NaN);
+
+    let emaData: number[] = [];
+    const multiplier = 2 / (options.length + 1);
+    for (let i = options.length - 1; i < data.length; i++) {
+      if (i === options.length - 1) {
+        emaData.push(this.smaIndicator.execute(data.slice(i - (options.length - 1), i + 1), { length: options.length })[0]);
+      } else {
+        emaData.push(round(data[i] * multiplier + (1 - multiplier) * emaData[emaData.length - 1], options.precision ?? 2));
+      }
     }
-    return ema;
+
+    return emaData;
   }
 }

@@ -1,16 +1,25 @@
+import { round } from 'mathjs';
 import { IIndicator } from '../interface/indicatorInterface';
+import { SMAOptions } from '../types/indicatorTypes';
 
 export class SMAIndicator implements IIndicator {
   public name: string = 'sma';
   public label: string = 'Simple Moving Average';
 
-  public execute(originalArray: number[], length: number): number[] {
-    let array;
-    let sma = [];
-    for (let i = length - 1; i >= 0; i--) {
-      array = originalArray.slice(i, i + length);
-      sma[i] = array.reduce((a, b) => a + b) / array.length;
+  public execute(data: number[], options: SMAOptions): number[] {
+    if (options.length < 1) {
+      throw new Error(`The SMA length should be greater than zero`);
     }
-    return sma;
+
+    if (data.length < options.length) {
+      throw new Error(`Not enough data to calculate the SMA of length ${options.length}`);
+    }
+
+    let smaData: number[] = [];
+    for (let i = options.length - 1; i < data.length; i++) {
+      smaData.push(round(data.slice(i - (options.length - 1), i + 1).reduce((a, b) => a + b) / options.length, options.precision ?? 2));
+    }
+
+    return smaData;
   }
 }
