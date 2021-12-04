@@ -21,6 +21,7 @@ export class StrategyManager {
     for (const file of this.getFilesFromDirectory(directory, '.js')) {
       const filename = path.basename(file);
       try {
+        // This must be run with eval to hide it from the webpack compiler :)
         const module = eval('require')(file);
         this.strategyValidator.validate(module);
         const normalizedModule = this.normalizer.normalize(module);
