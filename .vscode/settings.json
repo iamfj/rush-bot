@@ -14,5 +14,8 @@
   "javascript.validate.enable": false,
   "files.associations": {
     "*.env.dist": "dotenv"
-  }
+  },
+  "jest.showCoverageOnLoad": true,
+  "jest.coverageColors": { "uncovered": "rgba(255,99,71, 0.2)", "partially-covered": "rgba(255,215,0, 0.2)" },
+  "jest.coverageFormatter": "GutterFormatter"
 }
