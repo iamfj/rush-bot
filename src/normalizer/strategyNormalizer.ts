@@ -5,6 +5,7 @@ export class StrategyNormalizer {
     return {
       name: '',
       label: '',
+      schema: 1,
       options: {},
       onStart: () => {},
       onTick: () => {},
