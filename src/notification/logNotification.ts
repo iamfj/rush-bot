@@ -3,9 +3,9 @@ import { inject, injectable } from 'tsyringe';
 import { INotification } from '../interface/notificationInterface';
 
 @injectable()
-export class ConsoleNotification implements INotification<never> {
-  public name: string = 'console';
-  public label: string = 'Console';
+export class LogNotification implements INotification<never> {
+  public name: string = 'log';
+  public label: string = 'Log';
 
   public constructor(@inject(Logger) private readonly logger: Logger) {}
 
