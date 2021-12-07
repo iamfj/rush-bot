@@ -11,14 +11,6 @@
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development"
   },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.ts"
-    ]
-  },
   "dependencies": {
     "@types/mathjs": "^9.4.2",
     "axios": "^0.24.0",
