@@ -23,7 +23,7 @@ export class StrategyValidator implements IValidator {
     }
 
     if (module.onTick === undefined) {
-      throw new Error('Methos onTick is not defined');
+      throw new Error('Method onTick is not defined');
     }
   }
 }
