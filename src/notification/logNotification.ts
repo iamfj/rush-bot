@@ -4,8 +4,8 @@ import { INotification } from '../interface/notificationInterface';
 
 @injectable()
 export class LogNotification implements INotification<never> {
-  public name: string = 'log';
-  public label: string = 'Log';
+  public readonly name: string = 'log';
+  public readonly label: string = 'Log';
 
   public constructor(@inject(Logger) private readonly logger: Logger) {}
 

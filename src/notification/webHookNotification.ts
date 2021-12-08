@@ -5,8 +5,8 @@ import { INotification } from '../interface/notificationInterface';
 import { WebHockNotificationOptions } from '../types/notificationTypes';
 
 export class WebHookNotification implements INotification<WebHockNotificationOptions> {
-  public name: string = 'webhook';
-  public label: string = 'WebHook';
+  public readonly name: string = 'webhook';
+  public readonly label: string = 'WebHook';
 
   public constructor(@inject(Logger) private readonly logger: Logger) {}
 
