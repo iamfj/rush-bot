@@ -8,4 +8,5 @@ export type StrategyOption = {
   default?: Option;
   value?: Option;
 };
+
 export type StrategyOptions = { [key: string]: StrategyOption };
