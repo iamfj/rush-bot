@@ -3,8 +3,8 @@ import { IIndicator } from '../interface/indicatorInterface';
 import { SMAOptions } from '../types/indicatorTypes';
 
 export class SMAIndicator implements IIndicator {
-  public name: string = 'sma';
-  public label: string = 'Simple Moving Average';
+  public readonly name: string = 'sma';
+  public readonly label: string = 'Simple Moving Average';
 
   public execute(data: number[], options: SMAOptions): number[] {
     if (options.length < 1) {

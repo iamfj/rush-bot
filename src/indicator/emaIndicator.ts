@@ -6,8 +6,8 @@ import { SMAIndicator } from './smaIndicator';
 
 @injectable()
 export class EMAIndicator implements IIndicator {
-  public name: string = 'ema';
-  public label: string = 'Exponential Moving Average';
+  public readonly name: string = 'ema';
+  public readonly label: string = 'Exponential Moving Average';
 
   public constructor(@inject(SMAIndicator) private readonly smaIndicator: SMAIndicator) {}
 
