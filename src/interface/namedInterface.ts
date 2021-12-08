@@ -1,3 +1,3 @@
 export interface INamed {
-  name: string;
+  readonly name: string;
 }
