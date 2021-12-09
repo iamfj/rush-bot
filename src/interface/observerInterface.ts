@@ -1,4 +1,4 @@
 export interface IObserver {
-  observe(symbol: string): void;
-  unobserve(symbol: string): void;
+  observe(symbol: string, interval: string): void;
+  unobserve(symbol: string, interval: string): void;
 }

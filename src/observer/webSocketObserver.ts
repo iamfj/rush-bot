@@ -3,7 +3,7 @@ import { ClientRequest, IncomingMessage } from 'http';
 import WebSocket from 'ws';
 
 export abstract class WebSocketObserver implements IObserver {
-  public constructor(private readonly webSocket: WebSocket, public readonly heartbeatInterval?: number) {
+  public constructor(protected readonly webSocket: WebSocket, public readonly heartbeatInterval?: number) {
     this.webSocket.on('open', this.onOpen);
     this.webSocket.on('upgrade', this.onUpgrade);
     this.webSocket.on('message', this.onMessage);
@@ -31,6 +31,6 @@ export abstract class WebSocketObserver implements IObserver {
   public onClose(webSocket: WebSocket, code: number, reason: Buffer): void {}
 
   // These methods must be handled by all observers
-  public abstract observe(symbol: string): void;
-  public abstract unobserve(symbol: string): void;
+  public abstract observe(symbol: string, interval: string): void;
+  public abstract unobserve(symbol: string, interval: string): void;
 }
